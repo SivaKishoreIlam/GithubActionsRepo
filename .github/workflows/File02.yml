@@ -51,8 +51,8 @@ jobs:
         
     - name: Commit changes 
       run: | 
-        #git config --global user.email "github-actions@github.com" 
-        #git config --global user.name "GitHub Actions" 
+        git config --global user.email "sivakishore1025@gmail.com" 
+        git config --global user.name "SivaKishoreIlam" 
         git add package.json 
         git commit -m "Update package.json with new content" 
         git push
