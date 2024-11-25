@@ -1,0 +1,29 @@
+name: Build & Deploy Spring app
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-deploy: 
+    name: Build & Deploy Spring boot for beginner
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: 17
+
+      - name: UnitTest
+        run: mvn -B test --file File01.yml
+
+      - name: Build the application
+        run: |
+          mvn clean
+          mvn -B package --file File01.yml
+          
