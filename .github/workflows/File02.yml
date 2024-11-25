@@ -21,8 +21,41 @@ jobs:
     - name: Install Dependencies 
       run: npm install 
 
+    - name: Install jq 
+      run: sudo apt-get install jq
+
     - name: Creating a package.json file
       run: npm init -y
+
+    - name: Replace package.json 
+      run: | 
+        echo '{ 
+          "name": "my-updated-app", 
+          "version": "2.0.0", 
+          "description": "An updated description", 
+          "main": "index.js", 
+          "scripts": { 
+            "start": "node index.js",
+            "test": "jest" 
+          }, 
+          "keywords": ["example", "nodejs", "github"], 
+          "author": "Your Name", 
+          "license": "MIT", 
+          "dependencies": { 
+            "express": "^4.17.1" 
+          }, 
+          "devDependencies": { 
+            "jest": "^26.6.3" 
+          } 
+        }' > package.json 
+        
+    - name: Commit changes 
+      run: | 
+        #git config --global user.email "github-actions@github.com" 
+        #git config --global user.name "GitHub Actions" 
+        git add package.json 
+        git commit -m "Update package.json with new content" 
+        git push
       
     - name: Run Tests 
       run: npm test 
