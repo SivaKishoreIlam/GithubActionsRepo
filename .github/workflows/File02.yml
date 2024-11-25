@@ -20,10 +20,10 @@ jobs:
           java-version: 17
 
       - name: UnitTest
-        run: mvn -B test --file File01.yml
+        run: mvn -B test --file Sample.xml
 
       - name: Build the application
         run: |
           mvn clean
-          mvn -B package --file File01.yml
+          mvn -B package --file Sample.xml
           
